@@ -114,7 +114,7 @@ public class AuthController {
 		Seller seller = sellerRepository.findByLoginCodeAndExpireTimeGreaterThan(login_code, new Date());
 		if (seller == null) {
 			result.setCode(-1);
-			result.setMessage("登录已过期");
+			//result.setMessage("登录已过期");
 			return result;
 		}
 		seller.setUpdateTime(new Date());

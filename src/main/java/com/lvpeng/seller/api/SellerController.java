@@ -35,7 +35,7 @@ public class SellerController {
 		Seller seller = sellerRepository.findByLoginCodeAndExpireTimeGreaterThan(login_code, new Date());
 		if (seller == null) {
 			result.setCode(-1);
-			result.setMessage("非法操作");
+			//result.setMessage("非法操作");
 			return result;
 		}
 		List<SellerShop> beanList = sellerShopRepository.findBySellerId(seller.getId());
