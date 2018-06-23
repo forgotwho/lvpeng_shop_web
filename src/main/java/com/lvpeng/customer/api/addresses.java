@@ -8,35 +8,53 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lvpeng.customer.bean.OrderBean;
-import com.lvpeng.customer.bean.OrderCountBean;
-import com.lvpeng.customer.bean.OrderOfflineBean;
+import com.lvpeng.customer.bean.AddressBean;
 import com.lvpeng.seller.common.ResultBean;
 
 @RestController
-@RequestMapping("/orders")
-public class orders {
+@RequestMapping("/addresses")
+public class addresses {
 
-	@RequestMapping(value = "/count", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public ResultBean count() {
+	public ResultBean list(Integer from, Integer limit) {
 		ResultBean result = new ResultBean();
 		try {
-			OrderCountBean orderCountBean = new OrderCountBean();
-			result.setData(orderCountBean);
+			List<AddressBean> addressBeanList = new ArrayList<AddressBean>();
+			result.setData(addressBeanList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public ResultBean list(Integer from, Integer limit, String status) {
+	public ResultBean add(AddressBean addressBean) {
 		ResultBean result = new ResultBean();
 		try {
-			List<OrderBean> orderBeanList = new ArrayList<OrderBean>();
-			result.setData(orderBeanList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@ResponseBody
+	public ResultBean edit(Integer id, AddressBean addressBean) {
+		ResultBean result = new ResultBean();
+		try {
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public ResultBean delete(Integer id) {
+		ResultBean result = new ResultBean();
+		try {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,19 +66,8 @@ public class orders {
 	public ResultBean detail(Integer id) {
 		ResultBean result = new ResultBean();
 		try {
-			OrderBean orderBean = new OrderBean();
-			result.setData(orderBean);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
-	@RequestMapping(value = "/offline", method = RequestMethod.POST)
-	@ResponseBody
-	public ResultBean offline(OrderOfflineBean orderOfflineBean) {
-		ResultBean result = new ResultBean();
-		try {
+			AddressBean addressBean = new AddressBean();
+			result.setData(addressBean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

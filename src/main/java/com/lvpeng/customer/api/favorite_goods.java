@@ -39,4 +39,15 @@ public class favorite_goods {
 		return result;
 	}
 
+	@RequestMapping(method = RequestMethod.GET)
+	@ResponseBody
+	public ResultBean list(Integer from, Integer limit) {
+		ResultBean result = new ResultBean();
+		try {
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

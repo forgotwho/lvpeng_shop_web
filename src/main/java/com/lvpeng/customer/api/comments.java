@@ -31,7 +31,20 @@ public class comments {
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public ResultBean list(Integer from, Integer limit, String status, Integer goods_id) {
+	public ResultBean goodsList(Integer from, Integer limit, String status, Integer goods_id) {
+		ResultBean result = new ResultBean();
+		try {
+			List<CommentBean> commentBeanList = new ArrayList<CommentBean>();
+			result.setData(commentBeanList);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@ResponseBody
+	public ResultBean myList(Integer from, Integer limit, String status) {
 		ResultBean result = new ResultBean();
 		try {
 			List<CommentBean> commentBeanList = new ArrayList<CommentBean>();

@@ -5,7 +5,7 @@ package com.lvpeng.customer.bean;
 import java.util.Date;
 
 /**
- * Auto-generated: 2018-06-23 23:11:21
+ * Auto-generated: 2018-06-23 23:22:45
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
