@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Auto-generated: 2018-06-23 22:33:59
+ * Auto-generated: 2018-06-23 22:43:35
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
@@ -39,7 +39,7 @@ public class GoodsBean {
     private int favoriteCount;
     private int totalStock;
     private List<Images> images;
-    private String goodsDetails;
+    private List<GoodsDetails> goodsDetails;
     private String goodsSkuInfo;
     private List<String> tags;
     private String booking;
@@ -225,10 +225,10 @@ public class GoodsBean {
          return images;
      }
 
-    public void setGoodsDetails(String goodsDetails) {
+    public void setGoodsDetails(List<GoodsDetails> goodsDetails) {
          this.goodsDetails = goodsDetails;
      }
-     public String getGoodsDetails() {
+     public List<GoodsDetails> getGoodsDetails() {
          return goodsDetails;
      }
 

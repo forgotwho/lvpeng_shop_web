@@ -9,32 +9,33 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lvpeng.customer.bean.GoodsBean;
+import com.lvpeng.customer.bean.OrderCountBean;
 import com.lvpeng.seller.common.ResultBean;
 
 @RestController
-@RequestMapping("/goods")
-public class goods {
+@RequestMapping("/orders")
+public class orders {
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/count", method = RequestMethod.GET)
 	@ResponseBody
-	public ResultBean list(Integer from, Integer limit, Integer category_id,String by,String sort,String content) {
+	public ResultBean count() {
 		ResultBean result = new ResultBean();
 		try {
-			List<GoodsBean> goodsBeanList = new ArrayList<GoodsBean>();
-			result.setData(goodsBeanList);
+			OrderCountBean orderCountBean = new OrderCountBean();
+			result.setData(orderCountBean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	
+	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public ResultBean detail(Integer id) {
+	public ResultBean list(Integer from, Integer limit, String status) {
 		ResultBean result = new ResultBean();
 		try {
-			GoodsBean goodsBean = new GoodsBean();
-			result.setData(goodsBean);
+			List<GoodsBean> goodsBeanList = new ArrayList<GoodsBean>();
+			result.setData(goodsBeanList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

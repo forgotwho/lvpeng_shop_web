@@ -8,33 +8,34 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lvpeng.customer.bean.GoodsBean;
+import com.lvpeng.customer.bean.CommentBean;
+import com.lvpeng.customer.bean.CommentCountBean;
 import com.lvpeng.seller.common.ResultBean;
 
 @RestController
-@RequestMapping("/goods")
-public class goods {
+@RequestMapping("/comments")
+public class comments {
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/count", method = RequestMethod.GET)
 	@ResponseBody
-	public ResultBean list(Integer from, Integer limit, Integer category_id,String by,String sort,String content) {
+	public ResultBean count(Integer goods_id) {
 		ResultBean result = new ResultBean();
 		try {
-			List<GoodsBean> goodsBeanList = new ArrayList<GoodsBean>();
-			result.setData(goodsBeanList);
+			CommentCountBean commentCountBean = new CommentCountBean();
+			result.setData(commentCountBean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public ResultBean detail(Integer id) {
+	public ResultBean list(Integer from, Integer limit, String status, Integer goods_id) {
 		ResultBean result = new ResultBean();
 		try {
-			GoodsBean goodsBean = new GoodsBean();
-			result.setData(goodsBean);
+			List<CommentBean> commentBeanList = new ArrayList<CommentBean>();
+			result.setData(commentBeanList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

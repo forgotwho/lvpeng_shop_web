@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lvpeng.customer.bean.CheckSessionBean;
+import com.lvpeng.customer.bean.DecodeUserinfoBean;
 import com.lvpeng.customer.bean.SessionBean;
 import com.lvpeng.seller.common.ResultBean;
 
@@ -33,6 +34,19 @@ public class auth {
 		try {
 			CheckSessionBean checkSessionBean = new CheckSessionBean();
 			result.setData(checkSessionBean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/decode_userinfo", method = RequestMethod.GET)
+	@ResponseBody
+	public ResultBean decode_userinfo(String encryptedData, String iv, String thirdSession, String app_code) {
+		ResultBean result = new ResultBean();
+		try {
+			DecodeUserinfoBean decodeUserinfoBean = new DecodeUserinfoBean();
+			result.setData(decodeUserinfoBean);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
