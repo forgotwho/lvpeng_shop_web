@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lvpeng.customer.bean.Layout;
 import com.lvpeng.customer.bean.LayoutPageBean;
-import com.lvpeng.seller.common.ResultBean;
+import com.lvpeng.customer.common.ResultBean;
 
 @RestController
 @RequestMapping("/layout")

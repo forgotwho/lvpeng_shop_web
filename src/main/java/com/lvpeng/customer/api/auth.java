@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lvpeng.customer.bean.CheckSessionBean;
 import com.lvpeng.customer.bean.DecodeUserinfoBean;
 import com.lvpeng.customer.bean.SessionBean;
-import com.lvpeng.seller.common.ResultBean;
+import com.lvpeng.customer.common.ResultBean;
 
 @RestController
 @RequestMapping("/auth")

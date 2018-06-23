@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lvpeng.customer.bean.CouponAllBean;
-import com.lvpeng.seller.common.ResultBean;
+import com.lvpeng.customer.common.ResultBean;
 
 @RestController
 @RequestMapping("/coupons")

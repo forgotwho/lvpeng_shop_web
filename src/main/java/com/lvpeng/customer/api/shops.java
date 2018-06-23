@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lvpeng.customer.bean.ShopFullBean;
 import com.lvpeng.customer.bean.ShopStatusInfo;
-import com.lvpeng.seller.common.ResultBean;
+import com.lvpeng.customer.common.ResultBean;
 
 @RestController
 @RequestMapping("/shops")

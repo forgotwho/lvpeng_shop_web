@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lvpeng.customer.bean.OrderBean;
 import com.lvpeng.customer.bean.OrderCountBean;
 import com.lvpeng.customer.bean.OrderOfflineBean;
-import com.lvpeng.seller.common.ResultBean;
+import com.lvpeng.customer.common.ResultBean;
 
 @RestController
 @RequestMapping("/orders")

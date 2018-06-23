@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lvpeng.customer.bean.CommentBean;
 import com.lvpeng.customer.bean.CommentCountBean;
-import com.lvpeng.seller.common.ResultBean;
+import com.lvpeng.customer.common.ResultBean;
 
 @RestController
 @RequestMapping("/comments")
