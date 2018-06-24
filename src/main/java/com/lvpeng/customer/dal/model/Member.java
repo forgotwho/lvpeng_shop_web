@@ -3,14 +3,14 @@
   */
 package com.lvpeng.customer.dal.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 /**
- * Auto-generated: 2018-06-07 14:4:51
+ * Auto-generated: 2018-06-23 21:50:44
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
@@ -39,21 +39,13 @@ public class Member {
 	private String address;
 	private String note;
 	private Date updateTime;
-	private String nickName;
+	private String name;
 	private String offlineCard;
 	private int customDiscount;
+	@DBRef
 	private DiscountRule discountRule;
-	private List<MemberPresentDetail> memberPresentDetails = new ArrayList<>();
-	
-	
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	@DBRef
+	private List<String> memberPresentDetails;
 
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
@@ -215,12 +207,12 @@ public class Member {
 		return updateTime;
 	}
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getNickName() {
-		return nickName;
+	public String getName() {
+		return name;
 	}
 
 	public void setOfflineCard(String offlineCard) {
@@ -247,11 +239,11 @@ public class Member {
 		return discountRule;
 	}
 
-	public void setMemberPresentDetails(List<MemberPresentDetail> memberPresentDetails) {
+	public void setMemberPresentDetails(List<String> memberPresentDetails) {
 		this.memberPresentDetails = memberPresentDetails;
 	}
 
-	public List<MemberPresentDetail> getMemberPresentDetails() {
+	public List<String> getMemberPresentDetails() {
 		return memberPresentDetails;
 	}
 

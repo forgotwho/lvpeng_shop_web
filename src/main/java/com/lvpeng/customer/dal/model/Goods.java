@@ -7,9 +7,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 /**
- * Auto-generated: 2018-06-07 13:13:42
+ * Auto-generated: 2018-06-23 22:43:35
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
@@ -22,7 +23,7 @@ public class Goods {
 	private String name;
 	private int shopId;
 	private int status;
-	private int originalPrice;
+	private double originalPrice;
 	private double sellPrice;
 	private int innerCid;
 	private String innerCategoryName;
@@ -38,15 +39,17 @@ public class Goods {
 	private String deliveryTemplateName;
 	private String subhead;
 	private String type;
-	private String serviceParam;
+	@DBRef
 	private List<GoodsStock> goodsStocks;
 	private int salesVolume;
 	private int favoriteCount;
 	private int totalStock;
 	private List<Image> images;
+	@DBRef
 	private List<GoodsDetail> goodsDetails;
-	private GoodsSkuInfo goodsSkuInfo;
+	private String goodsSkuInfo;
 	private List<String> tags;
+	private String booking;
 
 	public void setId(int id) {
 		this.id = id;
@@ -88,11 +91,11 @@ public class Goods {
 		return status;
 	}
 
-	public void setOriginalPrice(int originalPrice) {
+	public void setOriginalPrice(double originalPrice) {
 		this.originalPrice = originalPrice;
 	}
 
-	public int getOriginalPrice() {
+	public double getOriginalPrice() {
 		return originalPrice;
 	}
 
@@ -216,14 +219,6 @@ public class Goods {
 		return type;
 	}
 
-	public void setServiceParam(String serviceParam) {
-		this.serviceParam = serviceParam;
-	}
-
-	public String getServiceParam() {
-		return serviceParam;
-	}
-
 	public void setGoodsStocks(List<GoodsStock> goodsStocks) {
 		this.goodsStocks = goodsStocks;
 	}
@@ -272,11 +267,11 @@ public class Goods {
 		return goodsDetails;
 	}
 
-	public void setGoodsSkuInfo(GoodsSkuInfo goodsSkuInfo) {
+	public void setGoodsSkuInfo(String goodsSkuInfo) {
 		this.goodsSkuInfo = goodsSkuInfo;
 	}
 
-	public GoodsSkuInfo getGoodsSkuInfo() {
+	public String getGoodsSkuInfo() {
 		return goodsSkuInfo;
 	}
 
@@ -286,6 +281,14 @@ public class Goods {
 
 	public List<String> getTags() {
 		return tags;
+	}
+
+	public void setBooking(String booking) {
+		this.booking = booking;
+	}
+
+	public String getBooking() {
+		return booking;
 	}
 
 }

@@ -3,14 +3,13 @@
   */
 package com.lvpeng.customer.dal.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
 /**
- * Auto-generated: 2018-06-07 11:16:23
+ * Auto-generated: 2018-06-23 21:50:44
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
@@ -38,7 +37,7 @@ public class Shop {
 	private int inShop;
 	private int supportMember;
 	private int isDelete;
-	private List<Image> images = new ArrayList<>();
+	private List<String> images;
 
 	public void setId(int id) {
 		this.id = id;
@@ -200,11 +199,11 @@ public class Shop {
 		return isDelete;
 	}
 
-	public void setImages(List<Image> images) {
+	public void setImages(List<String> images) {
 		this.images = images;
 	}
 
-	public List<Image> getImages() {
+	public List<String> getImages() {
 		return images;
 	}
 

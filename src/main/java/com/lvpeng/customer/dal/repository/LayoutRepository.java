@@ -3,7 +3,7 @@ package com.lvpeng.customer.dal.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.lvpeng.customer.dal.model.Goods;
+import com.lvpeng.customer.dal.model.Layout;
 
-public interface GoodsRepository extends MongoRepository<Goods, String> {
+public interface LayoutRepository extends MongoRepository<Layout, String> {
 }

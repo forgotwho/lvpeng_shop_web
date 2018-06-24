@@ -8,13 +8,12 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 
 /**
- * Auto-generated: 2018-06-07 11:31:33
+ * Auto-generated: 2018-06-23 21:50:44
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
 public class BonusRule {
-
 	@Id
 	private String id;
 	private int cardId;
@@ -28,6 +27,14 @@ public class BonusRule {
 	private int maxReduceBonus;
 	private Date createTime;
 	private int isCost;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public void setCardId(int cardId) {
 		this.cardId = cardId;

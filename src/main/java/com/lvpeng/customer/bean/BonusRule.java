@@ -4,6 +4,8 @@
 package com.lvpeng.customer.bean;
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+
 /**
  * Auto-generated: 2018-06-23 21:50:44
  *
@@ -11,7 +13,7 @@ import java.util.Date;
  * @website http://www.bejson.com/java2pojo/
  */
 public class BonusRule {
-
+	
     private int cardId;
     private int initIncreaseBonus;
     private int costMoneyUnit;
