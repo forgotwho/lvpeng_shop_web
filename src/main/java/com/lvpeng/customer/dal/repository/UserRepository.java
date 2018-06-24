@@ -6,6 +6,6 @@ import com.lvpeng.customer.dal.model.User;
 
 public interface UserRepository extends MongoRepository<User, String> {
 
-	public User findByAppCodeAndOpenid(String appCode, String openId);
+	public User findByAppCodeAndOpenId(String appCode, String openId);
 
 }

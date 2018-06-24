@@ -5,7 +5,6 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,11 +16,14 @@ import com.lvpeng.customer.bean.CheckSessionBean;
 import com.lvpeng.customer.bean.SessionBean;
 import com.lvpeng.customer.bean.UserinfoBean;
 import com.lvpeng.customer.common.ResultBean;
+import com.lvpeng.customer.dal.model.AppConfig;
 import com.lvpeng.customer.dal.model.User;
 import com.lvpeng.customer.dal.model.UserToken;
+import com.lvpeng.customer.dal.repository.AppConfigRepository;
 import com.lvpeng.customer.dal.repository.UserRepository;
 import com.lvpeng.customer.dal.repository.UserTokenRepository;
 import com.lvpeng.customer.util.RandomUtils;
+import com.lvpeng.customer.util.WXUtil;
 import com.lvpeng.customer.util.WeChatUtil;
 
 @RestController
@@ -30,11 +32,8 @@ public class AuthController {
 
 	private Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-	@Value("${wechat.appid:}")
-	private String appId;
-
-	@Value("${wechat.secret:}")
-	private String secret;
+	@Autowired
+	private AppConfigRepository appConfigRepository;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -48,7 +47,8 @@ public class AuthController {
 		ResultBean result = new ResultBean();
 		try {
 			logger.info("request code={}", code);
-			String okResult = WeChatUtil.login(appId, secret, code);
+			AppConfig appConfig = appConfigRepository.findByAppCode(app_code);
+			String okResult = WeChatUtil.login(appConfig.getWxappId(), appConfig.getWxappSecret(), code);
 			logger.info("response result={}", okResult);
 
 			JSONObject jsonResult = JSON.parseObject(okResult);
@@ -58,26 +58,40 @@ public class AuthController {
 				String unionid = jsonResult.getString("unionid");
 				String third_session = jsonResult.getString("session_key");
 
-				UserToken userToken = new UserToken();
-				userToken.setAppCode(app_code);
-				userToken.setCreateTime(new Date());
-				Date expireTime = new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24);
-				userToken.setExpireTime(expireTime);
-				userToken.setLastLoginTime(new Date());
-				userToken.setLoginCode(RandomUtils.loginCode());
-				userToken.setOpenId(openid);
-				userToken.setThirdSession(third_session);
-				userToken = userTokenRepository.save(userToken);
-
-				User user = userRepository.findByAppCodeAndOpenid(app_code, openid);
+				User user = userRepository.findByAppCodeAndOpenId(app_code, openid);
 				if (user == null) {
+					int id = (int) userRepository.count() + 1;
 					user = new User();
-					user.setAppCode(app_code);
-					user.setCreateTime(new Date());
+					user.setId(id);
 					user.setOpenId(openid);
+					user.setAppCode(app_code);
 					user.setUnionId(unionid);
+					user.setCreateTime(new Date());
 					userRepository.save(user);
 				}
+
+				UserToken userToken = userTokenRepository.findByAppCodeAndOpenId(app_code, openid);
+				if (userToken == null) {
+					userToken = new UserToken();
+					userToken.setAppCode(app_code);
+					userToken.setOpenId(openid);
+					userToken.setLoginCode(RandomUtils.loginCode());
+					userToken.setThirdSession(third_session);
+					userToken.setCreateTime(new Date());
+					Date expireTime = new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24);
+					userToken.setExpireTime(expireTime);
+					userToken.setLastLoginTime(new Date());
+				} else {
+					if (!userToken.getExpireTime().after(new Date())) {
+						Date expireTime = new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24);
+						userToken.setExpireTime(expireTime);
+						userToken.setLoginCode(RandomUtils.loginCode());
+					}
+					userToken.setThirdSession(third_session);
+					userToken.setLastLoginTime(new Date());
+					userToken.setUpdateTime(new Date());
+				}
+				userToken = userTokenRepository.save(userToken);
 
 				SessionBean sessionBean = new SessionBean();
 				sessionBean.setLogin_code(userToken.getLoginCode());
@@ -127,7 +141,20 @@ public class AuthController {
 				result.setCode(-1);
 				return result;
 			}
-			User user = userRepository.findByAppCodeAndOpenid(app_code, userToken.getOpenId());
+
+			JSONObject userInfo = WXUtil.getUserInfo(encryptedData, thirdSession, iv);
+
+			User user = userRepository.findByAppCodeAndOpenId(app_code, userToken.getOpenId());
+			user.setAvatarUrl(userInfo.getString("avatarUrl"));
+			user.setCity(userInfo.getString("city"));
+			user.setCountry(userInfo.getString("country"));
+			user.setGender(userInfo.getString("gender"));
+			user.setLanguage(userInfo.getString("nickName"));
+			user.setNickName(userInfo.getString("nickName"));
+			user.setProvince(userInfo.getString("province"));
+			user.setUnionId(userInfo.getString("unionId"));
+			user.setUpdateTime(new Date());
+			user = userRepository.save(user);
 			userinfoBean.setUser(user);
 			result.setData(userinfoBean);
 		} catch (Exception e) {

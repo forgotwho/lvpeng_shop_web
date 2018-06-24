@@ -11,4 +11,6 @@ public interface UserTokenRepository extends MongoRepository<UserToken, String> 
 	public UserToken findByLoginCodeAndExpireTimeGreaterThan(String loginCode, Date expireTime);
 
 	public UserToken findByThirdSessionAndExpireTimeGreaterThan(String thirdSession, Date expireTime);
+
+	public UserToken findByAppCodeAndOpenId(String appCode, String openId);
 }

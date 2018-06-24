@@ -3,6 +3,10 @@
   */
 package com.lvpeng.customer.dal.model;
 
+import java.util.Date;
+
+import org.springframework.data.annotation.Id;
+
 /**
  * Auto-generated: 2018-06-23 21:50:44
  *
@@ -11,11 +15,29 @@ package com.lvpeng.customer.dal.model;
  */
 public class ShopStatusInfo {
 
+	@Id
+	private String id;
+	private int shopId;
     private String status;
     private String beginTime;
     private String endTime;
     private boolean open;
-    public void setStatus(String status) {
+    private Date createTime;
+	private Date updateTime;
+    
+    public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public int getShopId() {
+		return shopId;
+	}
+	public void setShopId(int shopId) {
+		this.shopId = shopId;
+	}
+	public void setStatus(String status) {
          this.status = status;
      }
      public String getStatus() {
@@ -42,5 +64,17 @@ public class ShopStatusInfo {
      public boolean getOpen() {
          return open;
      }
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 
 }

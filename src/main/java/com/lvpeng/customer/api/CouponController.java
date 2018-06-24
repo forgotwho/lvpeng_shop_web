@@ -1,5 +1,7 @@
 package com.lvpeng.customer.api;
 
+import java.util.ArrayList;
+
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,6 +21,8 @@ public class CouponController {
 		ResultBean result = new ResultBean();
 		try {
 			CouponBean couponBean = new CouponBean();
+			couponBean.setOwned("");
+			couponBean.setShow(new ArrayList<String>());
 			result.setData(couponBean);
 		} catch (Exception e) {
 			e.printStackTrace();

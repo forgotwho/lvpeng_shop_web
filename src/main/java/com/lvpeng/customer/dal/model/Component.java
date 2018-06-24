@@ -21,6 +21,7 @@ public class Component {
     private int seq;
     private String title;
     private String param;
+    private String data;
     private Date createTime;
     private Date updateTime;
     private boolean isUse;
@@ -73,7 +74,16 @@ public class Component {
          return param;
      }
 
-    public void setCreateTime(Date createTime) {
+    public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
+	}
+	public void setUse(boolean isUse) {
+		this.isUse = isUse;
+	}
+	public void setCreateTime(Date createTime) {
          this.createTime = createTime;
      }
      public Date getCreateTime() {
