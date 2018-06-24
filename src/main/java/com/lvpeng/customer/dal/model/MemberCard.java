@@ -8,8 +8,6 @@ import java.util.List;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
-import com.lvpeng.customer.bean.DiscountRules;
-
 /**
  * Auto-generated: 2018-06-23 21:50:44
  *
@@ -45,7 +43,7 @@ public class MemberCard {
     @DBRef
     private BonusRule bonusRule;
     @DBRef
-    private List<DiscountRules> discountRules;
+    private List<DiscountRule> discountRules;
     @DBRef
     private List<String> memberPresentRules;
     public void setId(int id) {
@@ -216,10 +214,10 @@ public class MemberCard {
          return bonusRule;
      }
 
-    public void setDiscountRules(List<DiscountRules> discountRules) {
+    public void setDiscountRules(List<DiscountRule> discountRules) {
          this.discountRules = discountRules;
      }
-     public List<DiscountRules> getDiscountRules() {
+     public List<DiscountRule> getDiscountRules() {
          return discountRules;
      }
 

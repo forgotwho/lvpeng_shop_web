@@ -1,11 +1,12 @@
 package com.lvpeng.customer.api;
 
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lvpeng.customer.bean.CouponAllBean;
+import com.lvpeng.customer.bean.CouponBean;
 import com.lvpeng.customer.common.ResultBean;
 
 @RestController
@@ -14,13 +15,14 @@ public class CouponController {
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	@ResponseBody
-	public ResultBean all(String login_code) {
+	public ResultBean all(@RequestHeader("login_code") String login_code) {
 		ResultBean result = new ResultBean();
 		try {
-			CouponAllBean couponAllBean = new CouponAllBean();
-			result.setData(couponAllBean);
+			CouponBean couponBean = new CouponBean();
+			result.setData(couponBean);
 		} catch (Exception e) {
 			e.printStackTrace();
+			result.setCode(-1);
 		}
 		return result;
 	}

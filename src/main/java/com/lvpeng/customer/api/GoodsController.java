@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lvpeng.customer.bean.GoodsBean;
 import com.lvpeng.customer.common.ResultBean;
+import com.lvpeng.customer.dal.model.Goods;
 
 @RestController
 @RequestMapping("/goods")
@@ -20,8 +20,8 @@ public class GoodsController {
 	public ResultBean list(Integer from, Integer limit, Integer category_id,String by,String sort,String content) {
 		ResultBean result = new ResultBean();
 		try {
-			List<GoodsBean> goodsBeanList = new ArrayList<GoodsBean>();
-			result.setData(goodsBeanList);
+			List<Goods> goodsList = new ArrayList<Goods>();
+			result.setData(goodsList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -33,8 +33,8 @@ public class GoodsController {
 	public ResultBean detail(Integer id) {
 		ResultBean result = new ResultBean();
 		try {
-			GoodsBean goodsBean = new GoodsBean();
-			result.setData(goodsBean);
+			Goods goods = new Goods();
+			result.setData(goods);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

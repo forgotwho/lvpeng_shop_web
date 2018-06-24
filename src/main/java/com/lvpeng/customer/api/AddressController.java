@@ -1,27 +1,32 @@
 package com.lvpeng.customer.api;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lvpeng.customer.bean.AddressBean;
 import com.lvpeng.customer.common.ResultBean;
+import com.lvpeng.customer.dal.model.Address;
+import com.lvpeng.customer.dal.repository.AddressRepository;
 
 @RestController
 @RequestMapping("/addresses")
 public class AddressController {
+
+	@Autowired
+	private AddressRepository addressRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public ResultBean list(Integer from, Integer limit) {
 		ResultBean result = new ResultBean();
 		try {
-			List<AddressBean> addressBeanList = new ArrayList<AddressBean>();
-			result.setData(addressBeanList);
+			List<Address> addressList = addressRepository.findAll();
+			result.setCode(0);
+			result.setData(addressList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -30,7 +35,7 @@ public class AddressController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public ResultBean add(AddressBean addressBean) {
+	public ResultBean add(Address address) {
 		ResultBean result = new ResultBean();
 		try {
 		} catch (Exception e) {
@@ -41,7 +46,7 @@ public class AddressController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseBody
-	public ResultBean edit(Integer id, AddressBean addressBean) {
+	public ResultBean edit(Integer id, Address address) {
 		ResultBean result = new ResultBean();
 		try {
 		} catch (Exception e) {
@@ -66,8 +71,8 @@ public class AddressController {
 	public ResultBean detail(Integer id) {
 		ResultBean result = new ResultBean();
 		try {
-			AddressBean addressBean = new AddressBean();
-			result.setData(addressBean);
+			Address address = new Address();
+			result.setData(address);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lvpeng.customer.bean.FavoriteGoodsBatchBean;
 import com.lvpeng.customer.bean.FavoriteGoodsCheckBean;
 import com.lvpeng.customer.common.ResultBean;
+import com.lvpeng.customer.dal.model.FavoriteGoods;
 
 @RestController
 @RequestMapping("/favorite_goods")
@@ -30,7 +30,7 @@ public class FavoriteGoodsController {
 
 	@RequestMapping(value = "/batch", method = RequestMethod.POST)
 	@ResponseBody
-	public ResultBean batch(List<FavoriteGoodsBatchBean> beanList) {
+	public ResultBean batch(List<FavoriteGoods> beanList) {
 		ResultBean result = new ResultBean();
 		try {
 		} catch (Exception e) {

@@ -8,10 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lvpeng.customer.bean.OrderBean;
-import com.lvpeng.customer.bean.OrderCountBean;
 import com.lvpeng.customer.bean.OrderOfflineBean;
 import com.lvpeng.customer.common.ResultBean;
+import com.lvpeng.customer.dal.model.Order;
 
 @RestController
 @RequestMapping("/orders")
@@ -22,8 +21,8 @@ public class OrderController {
 	public ResultBean count() {
 		ResultBean result = new ResultBean();
 		try {
-			OrderCountBean orderCountBean = new OrderCountBean();
-			result.setData(orderCountBean);
+			Order order = new Order();
+			result.setData(order);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -35,8 +34,8 @@ public class OrderController {
 	public ResultBean list(Integer from, Integer limit, String status) {
 		ResultBean result = new ResultBean();
 		try {
-			List<OrderBean> orderBeanList = new ArrayList<OrderBean>();
-			result.setData(orderBeanList);
+			List<Order> orderList = new ArrayList<Order>();
+			result.setData(orderList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -48,8 +47,8 @@ public class OrderController {
 	public ResultBean detail(Integer id) {
 		ResultBean result = new ResultBean();
 		try {
-			OrderBean orderBean = new OrderBean();
-			result.setData(orderBean);
+			Order order = new Order();
+			result.setData(order);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

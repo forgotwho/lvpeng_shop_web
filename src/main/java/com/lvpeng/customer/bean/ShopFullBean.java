@@ -4,6 +4,14 @@
 package com.lvpeng.customer.bean;
 import java.util.List;
 
+import com.lvpeng.customer.dal.model.GoodsInnerCategory;
+import com.lvpeng.customer.dal.model.Member;
+import com.lvpeng.customer.dal.model.MemberCard;
+import com.lvpeng.customer.dal.model.Notice;
+import com.lvpeng.customer.dal.model.Shop;
+import com.lvpeng.customer.dal.model.ShopChargeLimit;
+import com.lvpeng.customer.dal.model.ShopStatusInfo;
+
 /**
  * Auto-generated: 2018-06-23 21:50:44
  *
@@ -14,12 +22,12 @@ public class ShopFullBean {
 
     private Shop shop;
     private ShopStatusInfo shopStatusInfo;
-    private List<Notices> notices;
+    private List<Notice> notices;
     private List<String> reduceRules;
     private ShopChargeLimit shopChargeLimit;
     private MemberCard memberCard;
     private Member member;
-    private List<GoodsInnerCategories> goodsInnerCategories;
+    private List<GoodsInnerCategory> goodsInnerCategory;
     private String homePageConfig;
     private int homePageId;
     private int customPageId;
@@ -38,10 +46,10 @@ public class ShopFullBean {
          return shopStatusInfo;
      }
 
-    public void setNotices(List<Notices> notices) {
+    public void setNotices(List<Notice> notices) {
          this.notices = notices;
      }
-     public List<Notices> getNotices() {
+     public List<Notice> getNotices() {
          return notices;
      }
 
@@ -73,11 +81,11 @@ public class ShopFullBean {
          return member;
      }
 
-    public void setGoodsInnerCategories(List<GoodsInnerCategories> goodsInnerCategories) {
-         this.goodsInnerCategories = goodsInnerCategories;
+    public void setGoodsInnerCategories(List<GoodsInnerCategory> goodsInnerCategory) {
+         this.goodsInnerCategory = goodsInnerCategory;
      }
-     public List<GoodsInnerCategories> getGoodsInnerCategories() {
-         return goodsInnerCategories;
+     public List<GoodsInnerCategory> getGoodsInnerCategories() {
+         return goodsInnerCategory;
      }
 
     public void setHomePageConfig(String homePageConfig) {

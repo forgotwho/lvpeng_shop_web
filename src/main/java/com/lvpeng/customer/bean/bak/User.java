@@ -1,7 +1,7 @@
 /**
   * Copyright 2018 bejson.com 
   */
-package com.lvpeng.customer.bean;
+package com.lvpeng.customer.bean.bak;
 import java.util.Date;
 
 /**

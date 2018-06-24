@@ -10,7 +10,7 @@ import java.util.List;
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class CouponAllBean {
+public class CouponBean {
 
     private List<String> show;
     private String owned;
