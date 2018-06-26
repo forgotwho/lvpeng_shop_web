@@ -19,8 +19,7 @@ import com.lvpeng.customer.dal.model.GoodsInnerCategory;
 import com.lvpeng.customer.dal.model.GoodsStock;
 import com.lvpeng.customer.dal.model.Image;
 import com.lvpeng.customer.dal.model.Layout;
-import com.lvpeng.customer.dal.model.Member;
-import com.lvpeng.customer.dal.model.MemberCard;
+import com.lvpeng.customer.dal.model.Notice;
 import com.lvpeng.customer.dal.model.Plugin;
 import com.lvpeng.customer.dal.model.Shop;
 import com.lvpeng.customer.dal.model.ShopChargeLimit;
@@ -29,6 +28,7 @@ import com.lvpeng.customer.dal.repository.AppConfigRepository;
 import com.lvpeng.customer.dal.repository.ComponentRepository;
 import com.lvpeng.customer.dal.repository.GoodsInnerCategoryRepository;
 import com.lvpeng.customer.dal.repository.GoodsRepository;
+import com.lvpeng.customer.dal.repository.GoodsStockRepository;
 import com.lvpeng.customer.dal.repository.LayoutRepository;
 import com.lvpeng.customer.dal.repository.MemberCardRepository;
 import com.lvpeng.customer.dal.repository.MemberRepository;
@@ -67,9 +67,6 @@ public class InitController {
 	private ShopStatusInfoRepository shopStatusInfoRepository;
 
 	@Autowired
-	private NoticeRepository noticeRepository;
-
-	@Autowired
 	private MemberCardRepository memberCardRepository;
 
 	@Autowired
@@ -87,74 +84,28 @@ public class InitController {
 	@Autowired
 	private GoodsRepository goodsRepository;
 
+	@Autowired
+	private GoodsStockRepository goodsStockRepository;
+
+	@Autowired
+	private NoticeRepository noticeRepository;
+
 	/**
 	 * 初始化数据
 	 */
 	@RequestMapping()
 	public ResultBean init() {
 		ResultBean result = new ResultBean();
-
-		userRepository.deleteAll();
-		userTokenRepository.deleteAll();
-		shopRepository.deleteAll();
-		shopChargeLimitRepository.deleteAll();
-		memberRepository.deleteAll();
-		memberCardRepository.deleteAll();
-		goodsInnerCategoryRepository.deleteAll();
-
-		Shop shop = new Shop();
-		shop.setId(1);
-		shop.setName("十堰饭来张口");
-		shop.setCategoryId(1);
-		shop.setCategoryName("餐饮");
-		shop.setDescribe("describe");
-		shop.setAddress("address");
-		shop.setPhone("phone");
-		shop.setLatitude("0");
-		shop.setLongitude("0");
-		shop.setDetailAddress("detailAddress");
-		List<String> images = new ArrayList<>();
-		images.add("http://ostb6zm4z.bkt.clouddn.com/SMGZJ.png");
-		shop.setImages(images);
-		shop.setAvatar("http://ostb6zm4z.bkt.clouddn.com/SMGZJ.png");
-		shop.setExpiredTime("2019-06-08 00:00:00");
-		shop.setCreateTime(new Date());
-		shop = shopRepository.save(shop);
-
-		ShopChargeLimit shopChargeLimit = new ShopChargeLimit();
-		shopChargeLimit.setShopId(shop.getId());
-		shopChargeLimit.setCouponLimit(100);
-		shopChargeLimit.setMemberLimit(100);
-		shopChargeLimit.setMpLimit(100);
-		shopChargeLimit.setOrderLimit(100);
-		shopChargeLimit.setSmsLimit(100);
-		shopChargeLimit.setCreateTime(new Date());
-		shopChargeLimit = shopChargeLimitRepository.save(shopChargeLimit);
-
-		ShopStatusInfo shopStatusInfo = new ShopStatusInfo();
-		shopStatusInfo.setShopId(shop.getId());
-		shopStatusInfo.setBeginTime("00:00");
-		shopStatusInfo.setEndTime("23:59");
-		shopStatusInfo.setOpen(true);
-		shopStatusInfo.setStatus("NORMAL");
-		shopStatusInfoRepository.save(shopStatusInfo);
-
-		Member member = new Member();
-		memberRepository.save(member);
-
-		MemberCard memberCard = new MemberCard();
-		memberCardRepository.save(memberCard);
-
-		List<GoodsInnerCategory> goodsInnerCategoryList = new ArrayList<>();
-		GoodsInnerCategory goodsInnerCategory = new GoodsInnerCategory();
-		goodsInnerCategory.setId(1);
-		goodsInnerCategory.setPid(0);
-		goodsInnerCategory.setName("name1");
-		goodsInnerCategory.setShopId(shop.getId());
-		goodsInnerCategory.setCreateTime(new Date());
-		goodsInnerCategoryList.add(goodsInnerCategory);
-		goodsInnerCategoryRepository.saveAll(goodsInnerCategoryList);
-
+		initApp();
+		initShop();
+		initShopStatusInfo();
+		initShopChargeLimit();
+		initGoodsInnerCategory();
+		initMember();
+		initMemberCard();
+		initLayout();
+		initGoods();
+		initNotice();
 		result.setCode(0);
 		return result;
 	}
@@ -322,6 +273,7 @@ public class InitController {
 		layout.setId(2);
 		layout.setName("首页（日用品）");
 		layout.setType("HOME");
+		layout.setShopId(1);
 
 		List<Plugin> plugins = new ArrayList<>();
 		Plugin plugin = new Plugin();
@@ -355,11 +307,11 @@ public class InitController {
 		component.setIsUse(true);
 		component.setSeq(1);
 		component.setTitle("搜索栏");
-		Map param = new HashMap();
+		Map<String, Object> param = new HashMap<String, Object>();
 		param.put("isContact", true);
 		param.put("border", "none");
 		component.setParam(JSON.toJSONString(param));
-		Map data = new HashMap();
+		Map<String, Object> data = new HashMap<String, Object>();
 		component.setData(JSON.toJSONString(data));
 		component.setCreateTime(new Date());
 		component.setUpdateTime(new Date());
@@ -375,6 +327,7 @@ public class InitController {
 		layout.setId(1);
 		layout.setName("个人（日用品）");
 		layout.setType("CUSTOM");
+		layout.setShopId(1);
 
 		components = new ArrayList<>();
 		component = new Component();
@@ -385,9 +338,9 @@ public class InitController {
 		component.setIsUse(true);
 		component.setSeq(1);
 		component.setTitle("会员卡");
-		param = new HashMap();
+		param = new HashMap<String, Object>();
 		component.setParam(JSON.toJSONString(param));
-		data = new HashMap();
+		data = new HashMap<String, Object>();
 		component.setData(JSON.toJSONString(data));
 		component.setCreateTime(new Date());
 		component.setUpdateTime(new Date());
@@ -396,7 +349,7 @@ public class InitController {
 		components = componentRepository.saveAll(components);
 
 		layout.setComponents(components);
-		
+
 		layout = layoutRepository.save(layout);
 	}
 
@@ -420,6 +373,7 @@ public class InitController {
 		goodsStock.setSku(null);
 		goodsStock.setStock(100);
 		goodsStocks.add(goodsStock);
+		goodsStocks = goodsStockRepository.saveAll(goodsStocks);
 		goods.setGoodsStocks(goodsStocks);
 		List<Image> images = new ArrayList<>();
 		Image image = new Image();
@@ -450,4 +404,18 @@ public class InitController {
 		goods = goodsRepository.save(goods);
 	}
 
+	public void initNotice() {
+		noticeRepository.deleteAll();
+
+		Notice notice = new Notice();
+		notice.setId(1);
+		notice.setIsHome(1);
+		notice.setIsShow(1);
+		notice.setShopId(1);
+		notice.setContent("新店开业了");
+		notice.setCreateTime(new Date());
+		notice.setUpdateTime(new Date());
+
+		noticeRepository.save(notice);
+	}
 }

@@ -20,6 +20,7 @@ public class Layout {
 	private int id;
 	private String name;
 	private String type;
+	private int shopId;
 	@DBRef
 	private List<Plugin> plugins;
 	@DBRef
@@ -47,6 +48,14 @@ public class Layout {
 
 	public String getType() {
 		return type;
+	}
+
+	public int getShopId() {
+		return shopId;
+	}
+
+	public void setShopId(int shopId) {
+		this.shopId = shopId;
 	}
 
 	public void setPlugins(List<Plugin> plugins) {

@@ -3,6 +3,7 @@ package com.lvpeng.customer.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,7 +45,7 @@ public class OrderController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public ResultBean detail(Integer id) {
+	public ResultBean detail(@PathVariable Integer id) {
 		ResultBean result = new ResultBean();
 		try {
 			Order order = new Order();

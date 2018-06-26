@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,7 +39,7 @@ public class GoodsController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public ResultBean detail(@RequestHeader("login_code") String login_code, Integer id) {
+	public ResultBean detail(@RequestHeader("login_code") String login_code, @PathVariable Integer id) {
 		ResultBean result = new ResultBean();
 		try {
 			Goods goods = new Goods();

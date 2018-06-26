@@ -15,16 +15,17 @@ import com.lvpeng.customer.bean.ShopFullBean;
 import com.lvpeng.customer.common.ResultBean;
 import com.lvpeng.customer.dal.model.AppConfig;
 import com.lvpeng.customer.dal.model.GoodsInnerCategory;
+import com.lvpeng.customer.dal.model.Layout;
 import com.lvpeng.customer.dal.model.Member;
 import com.lvpeng.customer.dal.model.MemberCard;
 import com.lvpeng.customer.dal.model.Notice;
-import com.lvpeng.customer.dal.model.Plugin;
 import com.lvpeng.customer.dal.model.Shop;
 import com.lvpeng.customer.dal.model.ShopChargeLimit;
 import com.lvpeng.customer.dal.model.ShopStatusInfo;
 import com.lvpeng.customer.dal.model.UserToken;
 import com.lvpeng.customer.dal.repository.AppConfigRepository;
 import com.lvpeng.customer.dal.repository.GoodsInnerCategoryRepository;
+import com.lvpeng.customer.dal.repository.LayoutRepository;
 import com.lvpeng.customer.dal.repository.MemberCardRepository;
 import com.lvpeng.customer.dal.repository.MemberRepository;
 import com.lvpeng.customer.dal.repository.NoticeRepository;
@@ -46,6 +47,9 @@ public class ShopController {
 
 	@Autowired
 	private ShopRepository shopRepository;
+	
+	@Autowired
+	private LayoutRepository layoutRepository;
 
 	@Autowired
 	private PluginRepository pluginRepository;
@@ -99,14 +103,14 @@ public class ShopController {
 
 			List<GoodsInnerCategory> goodsInnerCategory = goodsInnerCategoryRepository.findByShopId(shop.getId());
 
-			Plugin homePlugin = pluginRepository.findByShopIdAndType(shop.getId(), "1");
-			Plugin customPlugin = pluginRepository.findByShopIdAndType(shop.getId(), "2");
+			Layout homeLayout = layoutRepository.findByShopIdAndType(shop.getId(), "HOME");
+			Layout customLayout = layoutRepository.findByShopIdAndType(shop.getId(), "CUSTOM");
 
 			ShopFullBean shopFullBean = new ShopFullBean();
 			shopFullBean.setCampaignCoupon(null);
 			shopFullBean.setHomePageConfig(null);
-			shopFullBean.setCustomPageId(customPlugin.getPageId());
-			shopFullBean.setHomePageId(homePlugin.getPageId());
+			shopFullBean.setCustomPageId(customLayout.getId());
+			shopFullBean.setHomePageId(homeLayout.getId());
 
 			shopFullBean.setGoodsInnerCategories(goodsInnerCategory);
 			shopFullBean.setMember(member);
@@ -125,10 +129,18 @@ public class ShopController {
 
 	@RequestMapping(value = "/status", method = RequestMethod.GET)
 	@ResponseBody
-	public ResultBean status(String login_code) {
+	public ResultBean status(@RequestHeader("login_code") String login_code) {
 		ResultBean result = new ResultBean();
 		try {
-			ShopStatusInfo shopStatusInfo = new ShopStatusInfo();
+			Date expireTime = new Date();
+			UserToken userToken = userTokenRepository.findByLoginCodeAndExpireTimeGreaterThan(login_code, expireTime);
+			if (userToken == null) {
+				result.setCode(-1);
+				return result;
+			}
+
+			AppConfig appConfig = appConfigRepository.findByAppCode(userToken.getAppCode());
+			ShopStatusInfo shopStatusInfo = shopStatusInfoRepository.findByShopId(appConfig.getShopId());
 			result.setData(shopStatusInfo);
 		} catch (Exception e) {
 			e.printStackTrace();

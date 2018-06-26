@@ -1,6 +1,7 @@
 package com.lvpeng.customer.api;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lvpeng.customer.bean.CouponBean;
 import com.lvpeng.customer.common.ResultBean;
+import com.lvpeng.customer.dal.model.Address;
 
 @RestController
 @RequestMapping("/coupons")
@@ -34,6 +36,17 @@ public class CouponController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public ResultBean list(Integer from, Integer limit, String by, String sort, String status) {
+		ResultBean result = new ResultBean();
+		try {
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	@RequestMapping(value = "/order_available",method = RequestMethod.POST)
+	@ResponseBody
+	public ResultBean order_available(Address address) {
 		ResultBean result = new ResultBean();
 		try {
 		} catch (Exception e) {

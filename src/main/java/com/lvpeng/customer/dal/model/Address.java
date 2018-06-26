@@ -26,6 +26,7 @@ public class Address {
 	private double latitude;
 	private double longitude;
 	private String sex;
+	private int isDefault;
 
 	public String getId() {
 		return id;
@@ -121,6 +122,14 @@ public class Address {
 
 	public String getSex() {
 		return sex;
+	}
+
+	public int getIsDefault() {
+		return isDefault;
+	}
+
+	public void setIsDefault(int isDefault) {
+		this.isDefault = isDefault;
 	}
 
 }
