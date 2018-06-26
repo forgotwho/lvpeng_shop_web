@@ -138,8 +138,8 @@ public class InitController {
 		shop.setExpiredTime("2018-12-31 23:59:59");
 		shop.setCreateTime(new Date());
 		shop.setUpdateTime(new Date());
-		shop.setLatitude("26.1974470461");
-		shop.setLongitude("119.5438027382");
+		shop.setLatitude("31.23037");
+		shop.setLongitude("121.4737");
 		shop.setAvatar("http://ostb6zm4z.bkt.clouddn.com/SMGZJ.png");
 		shop.setAutoOrder(0);
 		shop.setLeArea(0l);

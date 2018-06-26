@@ -3,6 +3,7 @@ package com.lvpeng.customer.api;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,10 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lvpeng.customer.bean.CouponBean;
 import com.lvpeng.customer.common.ResultBean;
 import com.lvpeng.customer.dal.model.Address;
+import com.lvpeng.customer.dal.model.Coupon;
+import com.lvpeng.customer.dal.repository.CouponRepository;
 
 @RestController
 @RequestMapping("/coupons")
 public class CouponController {
+	
+	@Autowired
+	private CouponRepository couponRepository;
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	@ResponseBody
@@ -38,6 +44,8 @@ public class CouponController {
 	public ResultBean list(Integer from, Integer limit, String by, String sort, String status) {
 		ResultBean result = new ResultBean();
 		try {
+			List<Coupon> couponList = couponRepository.findAll();
+			result.setData(couponList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
