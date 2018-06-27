@@ -1,7 +1,7 @@
 /**
   * Copyright 2018 bejson.com 
   */
-package com.lvpeng.customer.dal.model;
+package com.lvpeng.seller.dal.model;
 
 import org.springframework.data.annotation.Id;
 

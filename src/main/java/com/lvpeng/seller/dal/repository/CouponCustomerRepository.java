@@ -1,8 +1,8 @@
-package com.lvpeng.customer.dal.repository;
+package com.lvpeng.seller.dal.repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.lvpeng.customer.dal.model.CouponCustomer;
+import com.lvpeng.seller.dal.model.CouponCustomer;
 
 public interface CouponCustomerRepository extends MongoRepository<CouponCustomer, String> {
 

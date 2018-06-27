@@ -10,17 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD:src/main/java/com/lvpeng/seller/api/CouponController.java
 import com.lvpeng.seller.bean.CouponBean;
 import com.lvpeng.seller.common.ResultBean;
 import com.lvpeng.seller.dal.model.Address;
-=======
-import com.lvpeng.customer.bean.CouponBean;
-import com.lvpeng.customer.common.ResultBean;
-import com.lvpeng.customer.dal.model.Address;
-import com.lvpeng.customer.dal.model.Coupon;
-import com.lvpeng.customer.dal.repository.CouponRepository;
->>>>>>> dd2089e1065e1e9b76676005536258713eb9d4b7:src/main/java/com/lvpeng/customer/api/CouponController.java
+import com.lvpeng.seller.dal.model.Coupon;
+import com.lvpeng.seller.dal.repository.CouponRepository;
 
 @RestController
 @RequestMapping("/coupons")
