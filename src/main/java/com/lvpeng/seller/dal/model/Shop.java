@@ -38,7 +38,7 @@ public class Shop {
 	private int inShop;
 	private int supportMember;
 	private int isDelete;
-	private List<Image> images;
+	private List<Image> images = new ArrayList<>();
 
 	public void setId(int id) {
 		this.id = id;

@@ -14,17 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lvpeng.seller.bean.ShopFullBean;
 import com.lvpeng.seller.common.ResultBean;
 import com.lvpeng.seller.dal.model.AppConfig;
-import com.lvpeng.seller.dal.model.GoodsInnerCategory;
+import com.lvpeng.seller.dal.model.InnerCategory;
 import com.lvpeng.seller.dal.model.Layout;
 import com.lvpeng.seller.dal.model.Member;
 import com.lvpeng.seller.dal.model.MemberCard;
 import com.lvpeng.seller.dal.model.Notice;
 import com.lvpeng.seller.dal.model.Shop;
 import com.lvpeng.seller.dal.model.ShopChargeLimit;
-import com.lvpeng.seller.dal.model.ShopStatusInfo;
+import com.lvpeng.seller.dal.model.ShopStatus;
 import com.lvpeng.seller.dal.model.UserToken;
 import com.lvpeng.seller.dal.repository.AppConfigRepository;
 import com.lvpeng.seller.dal.repository.GoodsInnerCategoryRepository;
+import com.lvpeng.seller.dal.repository.InnerCategoryRepository;
 import com.lvpeng.seller.dal.repository.LayoutRepository;
 import com.lvpeng.seller.dal.repository.MemberCardRepository;
 import com.lvpeng.seller.dal.repository.MemberRepository;
@@ -32,7 +33,7 @@ import com.lvpeng.seller.dal.repository.NoticeRepository;
 import com.lvpeng.seller.dal.repository.PluginRepository;
 import com.lvpeng.seller.dal.repository.ShopChargeLimitRepository;
 import com.lvpeng.seller.dal.repository.ShopRepository;
-import com.lvpeng.seller.dal.repository.ShopStatusInfoRepository;
+import com.lvpeng.seller.dal.repository.ShopStatusRepository;
 import com.lvpeng.seller.dal.repository.UserTokenRepository;
 
 @RestController
@@ -56,12 +57,15 @@ public class ShopController {
 
 	@Autowired
 	private GoodsInnerCategoryRepository goodsInnerCategoryRepository;
+	
+	@Autowired
+	private InnerCategoryRepository innerCategoryRepository;
 
 	@Autowired
 	private ShopChargeLimitRepository shopChargeLimitRepository;
 
 	@Autowired
-	private ShopStatusInfoRepository shopStatusInfoRepository;
+	private ShopStatusRepository shopStatusRepository;
 
 	@Autowired
 	private NoticeRepository noticeRepository;
@@ -89,7 +93,7 @@ public class ShopController {
 
 			Shop shop = shopRepository.findById(appConfig.getShopId());
 
-			ShopStatusInfo shopStatusInfo = shopStatusInfoRepository.findByShopId(shop.getId());
+			ShopStatus shopStatus = shopStatusRepository.findByShopId(shop.getId());
 
 			ShopChargeLimit shopChargeLimit = shopChargeLimitRepository.findByShopId(shop.getId());
 
@@ -101,7 +105,7 @@ public class ShopController {
 
 			MemberCard memberCard = memberCardRepository.findByShopId(shop.getId());
 
-			List<GoodsInnerCategory> goodsInnerCategory = goodsInnerCategoryRepository.findByShopId(shop.getId());
+			List<InnerCategory> innerCategoryList = innerCategoryRepository.findByShopId(shop.getId());
 
 			Layout homeLayout = layoutRepository.findByShopIdAndType(shop.getId(), "HOME");
 			Layout customLayout = layoutRepository.findByShopIdAndType(shop.getId(), "CUSTOM");
@@ -109,17 +113,25 @@ public class ShopController {
 			ShopFullBean shopFullBean = new ShopFullBean();
 			shopFullBean.setCampaignCoupon(null);
 			shopFullBean.setHomePageConfig(null);
-			shopFullBean.setCustomPageId(customLayout.getId());
-			shopFullBean.setHomePageId(homeLayout.getId());
+			if(customLayout!=null){
+				shopFullBean.setCustomPageId(customLayout.getId());
+			}else{
+				shopFullBean.setCustomPageId(1);
+			}
+			if(homeLayout!=null){
+				shopFullBean.setHomePageId(homeLayout.getId());
+			}else{
+				shopFullBean.setHomePageId(2);
+			}
 
-			shopFullBean.setGoodsInnerCategories(goodsInnerCategory);
+			shopFullBean.setGoodsInnerCategories(innerCategoryList);
 			shopFullBean.setMember(member);
 			shopFullBean.setMemberCard(memberCard);
 			shopFullBean.setNotices(notices);
 			shopFullBean.setReduceRules(reduceRules);
 			shopFullBean.setShop(shop);
 			shopFullBean.setShopChargeLimit(shopChargeLimit);
-			shopFullBean.setShopStatusInfo(shopStatusInfo);
+			shopFullBean.setShopStatusInfo(shopStatus);
 			result.setData(shopFullBean);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -140,8 +152,8 @@ public class ShopController {
 			}
 
 			AppConfig appConfig = appConfigRepository.findByAppCode(userToken.getAppCode());
-			ShopStatusInfo shopStatusInfo = shopStatusInfoRepository.findByShopId(appConfig.getShopId());
-			result.setData(shopStatusInfo);
+			ShopStatus shopStatus = shopStatusRepository.findByShopId(appConfig.getShopId());
+			result.setData(shopStatus);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

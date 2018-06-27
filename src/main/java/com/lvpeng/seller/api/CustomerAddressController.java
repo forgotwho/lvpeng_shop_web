@@ -1,8 +1,7 @@
 package com.lvpeng.seller.api;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lvpeng.seller.common.ResultBean;
 import com.lvpeng.seller.dal.model.CustomerAddress;
+import com.lvpeng.seller.dal.model.Delivery;
 import com.lvpeng.seller.dal.repository.AddressRepository;
+import com.lvpeng.seller.dal.repository.DeliveryRepository;
 
 @RestController
 @RequestMapping("/addresses")
@@ -23,6 +24,9 @@ public class CustomerAddressController {
 
 	@Autowired
 	private AddressRepository addressRepository;
+	
+	@Autowired
+	private DeliveryRepository deliveryRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
@@ -62,6 +66,10 @@ public class CustomerAddressController {
 		ResultBean result = new ResultBean();
 		try {
 			List<CustomerAddress> addressList = addressRepository.findAll();
+			List<Delivery> deliveryInfoDetail = deliveryRepository.findAll();
+			for(CustomerAddress temp :addressList){
+				temp.setDeliveryInfoDetail(deliveryInfoDetail);
+			}
 			result.setData(addressList);
 		} catch (Exception e) {
 			e.printStackTrace();

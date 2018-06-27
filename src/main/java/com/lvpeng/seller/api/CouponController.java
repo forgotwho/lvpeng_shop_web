@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lvpeng.seller.bean.CouponBean;
 import com.lvpeng.seller.common.ResultBean;
-import com.lvpeng.seller.dal.model.CustomerAddress;
 import com.lvpeng.seller.dal.model.Coupon;
+import com.lvpeng.seller.dal.model.CustomerAddress;
 import com.lvpeng.seller.dal.repository.CouponRepository;
 
 @RestController
@@ -57,6 +57,8 @@ public class CouponController {
 	public ResultBean order_available(CustomerAddress address) {
 		ResultBean result = new ResultBean();
 		try {
+			List<Coupon> couponList = couponRepository.findAll();
+			result.setData(new ArrayList());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

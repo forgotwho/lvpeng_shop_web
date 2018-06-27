@@ -4,13 +4,13 @@
 package com.lvpeng.seller.bean;
 import java.util.List;
 
-import com.lvpeng.seller.dal.model.GoodsInnerCategory;
+import com.lvpeng.seller.dal.model.InnerCategory;
 import com.lvpeng.seller.dal.model.Member;
 import com.lvpeng.seller.dal.model.MemberCard;
 import com.lvpeng.seller.dal.model.Notice;
 import com.lvpeng.seller.dal.model.Shop;
 import com.lvpeng.seller.dal.model.ShopChargeLimit;
-import com.lvpeng.seller.dal.model.ShopStatusInfo;
+import com.lvpeng.seller.dal.model.ShopStatus;
 
 /**
  * Auto-generated: 2018-06-23 21:50:44
@@ -21,13 +21,13 @@ import com.lvpeng.seller.dal.model.ShopStatusInfo;
 public class ShopFullBean {
 
     private Shop shop;
-    private ShopStatusInfo shopStatusInfo;
+    private ShopStatus shopStatusInfo;
     private List<Notice> notices;
     private List<String> reduceRules;
     private ShopChargeLimit shopChargeLimit;
     private MemberCard memberCard;
     private Member member;
-    private List<GoodsInnerCategory> goodsInnerCategory;
+    private List<InnerCategory> goodsInnerCategory;
     private String homePageConfig;
     private int homePageId;
     private int customPageId;
@@ -39,10 +39,10 @@ public class ShopFullBean {
          return shop;
      }
 
-    public void setShopStatusInfo(ShopStatusInfo shopStatusInfo) {
+    public void setShopStatusInfo(ShopStatus shopStatusInfo) {
          this.shopStatusInfo = shopStatusInfo;
      }
-     public ShopStatusInfo getShopStatusInfo() {
+     public ShopStatus getShopStatusInfo() {
          return shopStatusInfo;
      }
 
@@ -81,10 +81,10 @@ public class ShopFullBean {
          return member;
      }
 
-    public void setGoodsInnerCategories(List<GoodsInnerCategory> goodsInnerCategory) {
+    public void setGoodsInnerCategories(List<InnerCategory> goodsInnerCategory) {
          this.goodsInnerCategory = goodsInnerCategory;
      }
-     public List<GoodsInnerCategory> getGoodsInnerCategories() {
+     public List<InnerCategory> getGoodsInnerCategories() {
          return goodsInnerCategory;
      }
 

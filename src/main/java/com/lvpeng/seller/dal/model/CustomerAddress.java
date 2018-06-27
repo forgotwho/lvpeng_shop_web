@@ -3,6 +3,8 @@
   */
 package com.lvpeng.seller.dal.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 
 /**
@@ -28,6 +30,7 @@ public class CustomerAddress {
 	private String sex;
 	private int isDefault;
 	private boolean available;
+	private List<Delivery> deliveryInfoDetail;
 
 	public String getId() {
 		return id;
@@ -139,6 +142,14 @@ public class CustomerAddress {
 
 	public void setAvailable(boolean available) {
 		this.available = available;
+	}
+
+	public List<Delivery> getDeliveryInfoDetail() {
+		return deliveryInfoDetail;
+	}
+
+	public void setDeliveryInfoDetail(List<Delivery> deliveryInfoDetail) {
+		this.deliveryInfoDetail = deliveryInfoDetail;
 	}
 
 }

@@ -25,7 +25,7 @@ public class GoodsController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	@ResponseBody
 	public ResultBean list(@RequestHeader("login_code") String login_code, Integer from, Integer limit,
-			Integer category_id, String by, String sort, String content) {
+			String category_id, String by, String sort, String content) {
 		ResultBean result = new ResultBean();
 		try {
 			List<Goods> goodsList = new ArrayList<Goods>();
