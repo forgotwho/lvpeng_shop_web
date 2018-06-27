@@ -49,7 +49,7 @@ public class Order {
 	private BigDecimal couponPrice;
 	private String sellerNote;
 	private String formId;
-	private int reduceFee;
+	private BigDecimal reduceFee;
 	private int orderType;
 	private int leAppid;
 	private int leId;
@@ -316,11 +316,11 @@ public class Order {
 		return formId;
 	}
 
-	public void setReduceFee(int reduceFee) {
+	public void setReduceFee(BigDecimal reduceFee) {
 		this.reduceFee = reduceFee;
 	}
 
-	public int getReduceFee() {
+	public BigDecimal getReduceFee() {
 		return reduceFee;
 	}
 
