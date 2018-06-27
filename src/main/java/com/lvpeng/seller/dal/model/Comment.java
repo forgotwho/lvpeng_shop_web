@@ -28,7 +28,8 @@ public class Comment {
     private Date createTime;
     private Date updateTime;
     private String customer;
-    private String goods;
+    private Goods goods;
+    private String status;
     public void setId(int id) {
          this.id = id;
      }
@@ -120,11 +121,17 @@ public class Comment {
          return customer;
      }
 
-    public void setGoods(String goods) {
+    public void setGoods(Goods goods) {
          this.goods = goods;
      }
-     public String getGoods() {
+     public Goods getGoods() {
          return goods;
      }
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 }

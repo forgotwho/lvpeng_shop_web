@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 /**
  * Auto-generated: 2018-06-23 22:43:35
@@ -39,13 +38,12 @@ public class Goods {
 	private String deliveryTemplateName;
 	private String subhead;
 	private String type;
-	@DBRef
+	private String serviceParam;
 	private List<GoodsStock> goodsStocks;
 	private int salesVolume;
 	private int favoriteCount;
 	private int totalStock;
 	private List<Image> images;
-	@DBRef
 	private List<GoodsDetail> goodsDetails;
 	private GoodsSkuInfo goodsSkuInfo;
 	private List<String> tags;
@@ -219,6 +217,14 @@ public class Goods {
 		return type;
 	}
 
+	public void setServiceParam(String serviceParam) {
+		this.serviceParam = serviceParam;
+	}
+
+	public String getServiceParam() {
+		return serviceParam;
+	}
+
 	public void setGoodsStocks(List<GoodsStock> goodsStocks) {
 		this.goodsStocks = goodsStocks;
 	}
@@ -267,11 +273,11 @@ public class Goods {
 		return goodsDetails;
 	}
 
-	public void setGoodsSkuInfo(String goodsSkuInfo) {
+	public void setGoodsSkuInfo(GoodsSkuInfo goodsSkuInfo) {
 		this.goodsSkuInfo = goodsSkuInfo;
 	}
 
-	public String getGoodsSkuInfo() {
+	public GoodsSkuInfo getGoodsSkuInfo() {
 		return goodsSkuInfo;
 	}
 

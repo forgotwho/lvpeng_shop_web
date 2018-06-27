@@ -3,13 +3,14 @@
   */
 package com.lvpeng.seller.dal.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
 
 /**
- * Auto-generated: 2018-06-23 21:50:44
+ * Auto-generated: 2018-06-07 11:16:23
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/

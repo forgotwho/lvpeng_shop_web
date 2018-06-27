@@ -11,7 +11,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 /**
- * Auto-generated: 2018-06-23 21:50:44
+ * Auto-generated: 2018-06-07 11:31:33
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
@@ -19,215 +19,242 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 public class MemberCard {
 
 	@Id
-    private int id;
-    private int shopId;
-    private String backgroundPicUrl;
-    private String color;
-    private String brandName;
-    private String title;
-    private String prerogative;
-    private int autoActivate;
-    private int supplyBonus;
-    private int supplyBalance;
-    private int supplyDiscount;
-    private int supplyPresent;
-    private String notice;
-    private String description;
-    private int quantity;
-    private int date_type;
-    private int beginTimestamp;
-    private int endTimestamp;
-    private int fixedTerm;
-    private int fixedBeginTerm;
-    private String servicePhone;
-    private Date createTime;
-    private Date updateTime;
-    @DBRef
-    private BonusRule bonusRule;
-    @DBRef
-    private List<DiscountRule> discountRules;
-    @DBRef
-    private List<MemberPresentRule> memberPresentRules;
-    public void setId(int id) {
-         this.id = id;
-     }
-     public int getId() {
-         return id;
-     }
+	private int id;
+	private int shopId;
+	private String backgroundPicUrl;
+	private String color;
+	private String brandName;
+	private String title;
+	private String prerogative;
+	private int autoActivate;
+	private int supplyBonus;
+	private int supplyBalance;
+	private int supplyDiscount;
+	private int supplyPresent;
+	private String notice;
+	private String description;
+	private int quantity;
+	private int date_type;
+	private int beginTimestamp;
+	private int endTimestamp;
+	private int fixedTerm;
+	private int fixedBeginTerm;
+	private String servicePhone;
+	private Date createTime;
+	private Date updateTime;
+	@DBRef
+	private BonusRule bonusRule;
+	@DBRef
+	private List<DiscountRule> discountRules;
+	@DBRef
+	private List<MemberPresentRule> memberPresentRules;
 
-    public void setShopId(int shopId) {
-         this.shopId = shopId;
-     }
-     public int getShopId() {
-         return shopId;
-     }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setBackgroundPicUrl(String backgroundPicUrl) {
-         this.backgroundPicUrl = backgroundPicUrl;
-     }
-     public String getBackgroundPicUrl() {
-         return backgroundPicUrl;
-     }
+	public int getId() {
+		return id;
+	}
 
-    public void setColor(String color) {
-         this.color = color;
-     }
-     public String getColor() {
-         return color;
-     }
+	public void setShopId(int shopId) {
+		this.shopId = shopId;
+	}
 
-    public void setBrandName(String brandName) {
-         this.brandName = brandName;
-     }
-     public String getBrandName() {
-         return brandName;
-     }
+	public int getShopId() {
+		return shopId;
+	}
 
-    public void setTitle(String title) {
-         this.title = title;
-     }
-     public String getTitle() {
-         return title;
-     }
+	public void setBackgroundPicUrl(String backgroundPicUrl) {
+		this.backgroundPicUrl = backgroundPicUrl;
+	}
 
-    public void setPrerogative(String prerogative) {
-         this.prerogative = prerogative;
-     }
-     public String getPrerogative() {
-         return prerogative;
-     }
+	public String getBackgroundPicUrl() {
+		return backgroundPicUrl;
+	}
 
-    public void setAutoActivate(int autoActivate) {
-         this.autoActivate = autoActivate;
-     }
-     public int getAutoActivate() {
-         return autoActivate;
-     }
+	public void setColor(String color) {
+		this.color = color;
+	}
 
-    public void setSupplyBonus(int supplyBonus) {
-         this.supplyBonus = supplyBonus;
-     }
-     public int getSupplyBonus() {
-         return supplyBonus;
-     }
+	public String getColor() {
+		return color;
+	}
 
-    public void setSupplyBalance(int supplyBalance) {
-         this.supplyBalance = supplyBalance;
-     }
-     public int getSupplyBalance() {
-         return supplyBalance;
-     }
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
+	}
 
-    public void setSupplyDiscount(int supplyDiscount) {
-         this.supplyDiscount = supplyDiscount;
-     }
-     public int getSupplyDiscount() {
-         return supplyDiscount;
-     }
+	public String getBrandName() {
+		return brandName;
+	}
 
-    public void setSupplyPresent(int supplyPresent) {
-         this.supplyPresent = supplyPresent;
-     }
-     public int getSupplyPresent() {
-         return supplyPresent;
-     }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setNotice(String notice) {
-         this.notice = notice;
-     }
-     public String getNotice() {
-         return notice;
-     }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setDescription(String description) {
-         this.description = description;
-     }
-     public String getDescription() {
-         return description;
-     }
+	public void setPrerogative(String prerogative) {
+		this.prerogative = prerogative;
+	}
 
-    public void setQuantity(int quantity) {
-         this.quantity = quantity;
-     }
-     public int getQuantity() {
-         return quantity;
-     }
+	public String getPrerogative() {
+		return prerogative;
+	}
 
-    public void setDate_type(int date_type) {
-         this.date_type = date_type;
-     }
-     public int getDate_type() {
-         return date_type;
-     }
+	public void setAutoActivate(int autoActivate) {
+		this.autoActivate = autoActivate;
+	}
 
-    public void setBeginTimestamp(int beginTimestamp) {
-         this.beginTimestamp = beginTimestamp;
-     }
-     public int getBeginTimestamp() {
-         return beginTimestamp;
-     }
+	public int getAutoActivate() {
+		return autoActivate;
+	}
 
-    public void setEndTimestamp(int endTimestamp) {
-         this.endTimestamp = endTimestamp;
-     }
-     public int getEndTimestamp() {
-         return endTimestamp;
-     }
+	public void setSupplyBonus(int supplyBonus) {
+		this.supplyBonus = supplyBonus;
+	}
 
-    public void setFixedTerm(int fixedTerm) {
-         this.fixedTerm = fixedTerm;
-     }
-     public int getFixedTerm() {
-         return fixedTerm;
-     }
+	public int getSupplyBonus() {
+		return supplyBonus;
+	}
 
-    public void setFixedBeginTerm(int fixedBeginTerm) {
-         this.fixedBeginTerm = fixedBeginTerm;
-     }
-     public int getFixedBeginTerm() {
-         return fixedBeginTerm;
-     }
+	public void setSupplyBalance(int supplyBalance) {
+		this.supplyBalance = supplyBalance;
+	}
 
-    public void setServicePhone(String servicePhone) {
-         this.servicePhone = servicePhone;
-     }
-     public String getServicePhone() {
-         return servicePhone;
-     }
+	public int getSupplyBalance() {
+		return supplyBalance;
+	}
 
-    public void setCreateTime(Date createTime) {
-         this.createTime = createTime;
-     }
-     public Date getCreateTime() {
-         return createTime;
-     }
+	public void setSupplyDiscount(int supplyDiscount) {
+		this.supplyDiscount = supplyDiscount;
+	}
 
-    public void setUpdateTime(Date updateTime) {
-         this.updateTime = updateTime;
-     }
-     public Date getUpdateTime() {
-         return updateTime;
-     }
+	public int getSupplyDiscount() {
+		return supplyDiscount;
+	}
 
-    public void setBonusRule(BonusRule bonusRule) {
-         this.bonusRule = bonusRule;
-     }
-     public BonusRule getBonusRule() {
-         return bonusRule;
-     }
+	public void setSupplyPresent(int supplyPresent) {
+		this.supplyPresent = supplyPresent;
+	}
 
-    public void setDiscountRules(List<DiscountRule> discountRules) {
-         this.discountRules = discountRules;
-     }
-     public List<DiscountRule> getDiscountRules() {
-         return discountRules;
-     }
+	public int getSupplyPresent() {
+		return supplyPresent;
+	}
 
-    public void setMemberPresentRules(List<MemberPresentRule> memberPresentRules) {
-         this.memberPresentRules = memberPresentRules;
-     }
-     public List<MemberPresentRule> getMemberPresentRules() {
-         return memberPresentRules;
-     }
+	public void setNotice(String notice) {
+		this.notice = notice;
+	}
+
+	public String getNotice() {
+		return notice;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setDate_type(int date_type) {
+		this.date_type = date_type;
+	}
+
+	public int getDate_type() {
+		return date_type;
+	}
+
+	public void setBeginTimestamp(int beginTimestamp) {
+		this.beginTimestamp = beginTimestamp;
+	}
+
+	public int getBeginTimestamp() {
+		return beginTimestamp;
+	}
+
+	public void setEndTimestamp(int endTimestamp) {
+		this.endTimestamp = endTimestamp;
+	}
+
+	public int getEndTimestamp() {
+		return endTimestamp;
+	}
+
+	public void setFixedTerm(int fixedTerm) {
+		this.fixedTerm = fixedTerm;
+	}
+
+	public int getFixedTerm() {
+		return fixedTerm;
+	}
+
+	public void setFixedBeginTerm(int fixedBeginTerm) {
+		this.fixedBeginTerm = fixedBeginTerm;
+	}
+
+	public int getFixedBeginTerm() {
+		return fixedBeginTerm;
+	}
+
+	public void setServicePhone(String servicePhone) {
+		this.servicePhone = servicePhone;
+	}
+
+	public String getServicePhone() {
+		return servicePhone;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setBonusRule(BonusRule bonusRule) {
+		this.bonusRule = bonusRule;
+	}
+
+	public BonusRule getBonusRule() {
+		return bonusRule;
+	}
+
+	public void setDiscountRules(List<DiscountRule> discountRules) {
+		this.discountRules = discountRules;
+	}
+
+	public List<DiscountRule> getDiscountRules() {
+		return discountRules;
+	}
+
+	public void setMemberPresentRules(List<MemberPresentRule> memberPresentRules) {
+		this.memberPresentRules = memberPresentRules;
+	}
+
+	public List<MemberPresentRule> getMemberPresentRules() {
+		return memberPresentRules;
+	}
 
 }
