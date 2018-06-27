@@ -27,6 +27,7 @@ public class Address {
 	private double longitude;
 	private String sex;
 	private int isDefault;
+	private boolean available;
 
 	public String getId() {
 		return id;
@@ -130,6 +131,14 @@ public class Address {
 
 	public void setIsDefault(int isDefault) {
 		this.isDefault = isDefault;
+	}
+
+	public boolean isAvailable() {
+		return available;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 
 }

@@ -1,7 +1,8 @@
 package com.lvpeng.seller.api;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +58,11 @@ public class AddressController {
 
 	@RequestMapping(value = "/available", method = RequestMethod.POST)
 	@ResponseBody
-	public ResultBean available(@RequestBody Address address) {
+	public ResultBean available(Address address) {
 		ResultBean result = new ResultBean();
 		try {
 			List<Address> addressList = addressRepository.findAll();
-			result.setData(new ArrayList<Address>());
+			result.setData(addressList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -75,6 +76,7 @@ public class AddressController {
 		try {
 			Address queryAddress = addressRepository.findById(id).get();
 			BeanUtils.copyProperties(address, queryAddress, new String[] { "id" });
+			queryAddress.setAvailable(true);
 			addressRepository.save(queryAddress);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -87,9 +89,14 @@ public class AddressController {
 	public ResultBean setDefault(@PathVariable String id) {
 		ResultBean result = new ResultBean();
 		try {
-			Address queryAddress = addressRepository.findById(id).get();
-			queryAddress.setIsDefault(1);
-			addressRepository.save(queryAddress);
+			List<Address> addressList = addressRepository.findAll();
+			for(Address temp: addressList){
+				temp.setIsDefault(0);
+				if(temp.getId().equals(id)){
+					temp.setIsDefault(1);
+				}
+			}
+			addressRepository.saveAll(addressList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
