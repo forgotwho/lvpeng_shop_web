@@ -8,12 +8,13 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 
 /**
- * Auto-generated: 2018-06-23 21:50:44
+ * Auto-generated: 2018-06-07 11:31:33
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
 public class BonusRule {
+
 	@Id
 	private String id;
 	private int cardId;

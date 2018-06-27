@@ -47,7 +47,7 @@ public class Goods {
 	private List<Image> images;
 	@DBRef
 	private List<GoodsDetail> goodsDetails;
-	private String goodsSkuInfo;
+	private GoodsSkuInfo goodsSkuInfo;
 	private List<String> tags;
 	private String booking;
 

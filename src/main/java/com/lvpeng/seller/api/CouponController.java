@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lvpeng.seller.bean.CouponBean;
 import com.lvpeng.seller.common.ResultBean;
-import com.lvpeng.seller.dal.model.Address;
+import com.lvpeng.seller.dal.model.CustomerAddress;
 import com.lvpeng.seller.dal.model.Coupon;
 import com.lvpeng.seller.dal.repository.CouponRepository;
 
@@ -54,7 +54,7 @@ public class CouponController {
 	
 	@RequestMapping(value = "/order_available",method = RequestMethod.POST)
 	@ResponseBody
-	public ResultBean order_available(Address address) {
+	public ResultBean order_available(CustomerAddress address) {
 		ResultBean result = new ResultBean();
 		try {
 		} catch (Exception e) {

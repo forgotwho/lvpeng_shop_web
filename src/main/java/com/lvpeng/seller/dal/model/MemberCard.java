@@ -2,6 +2,8 @@
   * Copyright 2018 bejson.com 
   */
 package com.lvpeng.seller.dal.model;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,7 +47,7 @@ public class MemberCard {
     @DBRef
     private List<DiscountRule> discountRules;
     @DBRef
-    private List<String> memberPresentRules;
+    private List<MemberPresentRule> memberPresentRules;
     public void setId(int id) {
          this.id = id;
      }
@@ -221,10 +223,10 @@ public class MemberCard {
          return discountRules;
      }
 
-    public void setMemberPresentRules(List<String> memberPresentRules) {
+    public void setMemberPresentRules(List<MemberPresentRule> memberPresentRules) {
          this.memberPresentRules = memberPresentRules;
      }
-     public List<String> getMemberPresentRules() {
+     public List<MemberPresentRule> getMemberPresentRules() {
          return memberPresentRules;
      }
 

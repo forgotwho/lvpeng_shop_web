@@ -3,6 +3,7 @@
   */
 package com.lvpeng.seller.dal.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -39,13 +40,23 @@ public class Member {
 	private String address;
 	private String note;
 	private Date updateTime;
-	private String name;
+	private String nickName;
 	private String offlineCard;
 	private int customDiscount;
 	@DBRef
 	private DiscountRule discountRule;
 	@DBRef
-	private List<String> memberPresentDetails;
+	private List<MemberPresentDetail> memberPresentDetails;
+	
+	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public void setMemberId(int memberId) {
 		this.memberId = memberId;
@@ -207,12 +218,12 @@ public class Member {
 		return updateTime;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
-	public String getName() {
-		return name;
+	public String getNickName() {
+		return nickName;
 	}
 
 	public void setOfflineCard(String offlineCard) {
@@ -239,11 +250,11 @@ public class Member {
 		return discountRule;
 	}
 
-	public void setMemberPresentDetails(List<String> memberPresentDetails) {
+	public void setMemberPresentDetails(List<MemberPresentDetail> memberPresentDetails) {
 		this.memberPresentDetails = memberPresentDetails;
 	}
 
-	public List<String> getMemberPresentDetails() {
+	public List<MemberPresentDetail> getMemberPresentDetails() {
 		return memberPresentDetails;
 	}
 

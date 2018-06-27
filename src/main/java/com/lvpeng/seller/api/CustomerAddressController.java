@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lvpeng.seller.common.ResultBean;
-import com.lvpeng.seller.dal.model.Address;
+import com.lvpeng.seller.dal.model.CustomerAddress;
 import com.lvpeng.seller.dal.repository.AddressRepository;
 
 @RestController
 @RequestMapping("/addresses")
-public class AddressController {
+public class CustomerAddressController {
 
 	@Autowired
 	private AddressRepository addressRepository;
@@ -29,7 +29,7 @@ public class AddressController {
 	public ResultBean list(Integer from, Integer limit) {
 		ResultBean result = new ResultBean();
 		try {
-			List<Address> addressList = addressRepository.findAll();
+			List<CustomerAddress> addressList = addressRepository.findAll();
 			result.setCode(0);
 			result.setData(addressList);
 		} catch (Exception e) {
@@ -40,10 +40,10 @@ public class AddressController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	public ResultBean add(@RequestBody Address address) {
+	public ResultBean add(@RequestBody CustomerAddress address) {
 		ResultBean result = new ResultBean();
 		try {
-			List<Address> addressList = addressRepository.findAll();
+			List<CustomerAddress> addressList = addressRepository.findAll();
 			if (addressList == null || addressList.isEmpty()) {
 				address.setIsDefault(1);
 			} else {
@@ -58,10 +58,10 @@ public class AddressController {
 
 	@RequestMapping(value = "/available", method = RequestMethod.POST)
 	@ResponseBody
-	public ResultBean available(Address address) {
+	public ResultBean available(CustomerAddress address) {
 		ResultBean result = new ResultBean();
 		try {
-			List<Address> addressList = addressRepository.findAll();
+			List<CustomerAddress> addressList = addressRepository.findAll();
 			result.setData(addressList);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,10 +71,10 @@ public class AddressController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@ResponseBody
-	public ResultBean edit(@PathVariable String id, @RequestBody Address address) {
+	public ResultBean edit(@PathVariable String id, @RequestBody CustomerAddress address) {
 		ResultBean result = new ResultBean();
 		try {
-			Address queryAddress = addressRepository.findById(id).get();
+			CustomerAddress queryAddress = addressRepository.findById(id).get();
 			BeanUtils.copyProperties(address, queryAddress, new String[] { "id" });
 			queryAddress.setAvailable(true);
 			addressRepository.save(queryAddress);
@@ -89,8 +89,8 @@ public class AddressController {
 	public ResultBean setDefault(@PathVariable String id) {
 		ResultBean result = new ResultBean();
 		try {
-			List<Address> addressList = addressRepository.findAll();
-			for(Address temp: addressList){
+			List<CustomerAddress> addressList = addressRepository.findAll();
+			for(CustomerAddress temp: addressList){
 				temp.setIsDefault(0);
 				if(temp.getId().equals(id)){
 					temp.setIsDefault(1);
@@ -120,7 +120,7 @@ public class AddressController {
 	public ResultBean detail(@PathVariable String id) {
 		ResultBean result = new ResultBean();
 		try {
-			Address address = addressRepository.findById(id).get();
+			CustomerAddress address = addressRepository.findById(id).get();
 			result.setData(address);
 		} catch (Exception e) {
 			e.printStackTrace();

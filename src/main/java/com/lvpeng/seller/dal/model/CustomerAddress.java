@@ -11,7 +11,7 @@ import org.springframework.data.annotation.Id;
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class Address {
+public class CustomerAddress {
 
 	@Id
 	private String id;
