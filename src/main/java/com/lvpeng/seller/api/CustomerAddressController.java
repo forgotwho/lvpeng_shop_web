@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lvpeng.seller.common.ResultBean;
 import com.lvpeng.seller.dal.model.CustomerAddress;
 import com.lvpeng.seller.dal.model.Delivery;
-import com.lvpeng.seller.dal.repository.AddressRepository;
+import com.lvpeng.seller.dal.repository.CustomerAddressRepository;
 import com.lvpeng.seller.dal.repository.DeliveryRepository;
 
 @RestController
@@ -23,7 +23,7 @@ import com.lvpeng.seller.dal.repository.DeliveryRepository;
 public class CustomerAddressController {
 
 	@Autowired
-	private AddressRepository addressRepository;
+	private CustomerAddressRepository addressRepository;
 	
 	@Autowired
 	private DeliveryRepository deliveryRepository;

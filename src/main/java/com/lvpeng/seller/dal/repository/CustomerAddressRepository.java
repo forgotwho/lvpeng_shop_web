@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.lvpeng.seller.dal.model.CustomerAddress;
 
-public interface AddressRepository extends MongoRepository<CustomerAddress, String> {
+public interface CustomerAddressRepository extends MongoRepository<CustomerAddress, String> {
 	
 }
