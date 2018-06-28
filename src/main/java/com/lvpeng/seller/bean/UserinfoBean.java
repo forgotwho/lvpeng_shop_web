@@ -3,7 +3,7 @@
   */
 package com.lvpeng.seller.bean;
 
-import com.lvpeng.seller.dal.model.User;
+import com.lvpeng.seller.dal.model.Customer;
 
 /**
  * Auto-generated: 2018-06-23 23:6:4
@@ -13,13 +13,13 @@ import com.lvpeng.seller.dal.model.User;
  */
 public class UserinfoBean {
 
-	private User user;
+	private Customer user;
 
-	public void setUser(User user) {
+	public void setUser(Customer user) {
 		this.user = user;
 	}
 
-	public User getUser() {
+	public Customer getUser() {
 		return user;
 	}
 

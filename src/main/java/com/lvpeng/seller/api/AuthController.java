@@ -17,10 +17,10 @@ import com.lvpeng.seller.bean.SessionBean;
 import com.lvpeng.seller.bean.UserinfoBean;
 import com.lvpeng.seller.common.ResultBean;
 import com.lvpeng.seller.dal.model.AppConfig;
-import com.lvpeng.seller.dal.model.User;
+import com.lvpeng.seller.dal.model.Customer;
 import com.lvpeng.seller.dal.model.UserToken;
 import com.lvpeng.seller.dal.repository.AppConfigRepository;
-import com.lvpeng.seller.dal.repository.UserRepository;
+import com.lvpeng.seller.dal.repository.CustomerRepository;
 import com.lvpeng.seller.dal.repository.UserTokenRepository;
 import com.lvpeng.seller.util.RandomUtils;
 import com.lvpeng.seller.util.WXUtil;
@@ -36,7 +36,7 @@ public class AuthController {
 	private AppConfigRepository appConfigRepository;
 
 	@Autowired
-	private UserRepository userRepository;
+	private CustomerRepository userRepository;
 
 	@Autowired
 	private UserTokenRepository userTokenRepository;
@@ -58,10 +58,10 @@ public class AuthController {
 				String unionid = jsonResult.getString("unionid");
 				String third_session = jsonResult.getString("session_key");
 
-				User user = userRepository.findByAppCodeAndOpenId(app_code, openid);
+				Customer user = userRepository.findByAppCodeAndOpenId(app_code, openid);
 				if (user == null) {
 					int id = (int) userRepository.count() + 1;
-					user = new User();
+					user = new Customer();
 					user.setId(id);
 					user.setOpenId(openid);
 					user.setAppCode(app_code);
@@ -144,7 +144,7 @@ public class AuthController {
 
 			JSONObject userInfo = WXUtil.getUserInfo(encryptedData, thirdSession, iv);
 
-			User user = userRepository.findByAppCodeAndOpenId(app_code, userToken.getOpenId());
+			Customer user = userRepository.findByAppCodeAndOpenId(app_code, userToken.getOpenId());
 			user.setAvatarUrl(userInfo.getString("avatarUrl"));
 			user.setCity(userInfo.getString("city"));
 			user.setCountry(userInfo.getString("country"));

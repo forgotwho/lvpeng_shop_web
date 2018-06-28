@@ -68,9 +68,14 @@ public class ImageController {
 	}
 	
 	@RequestMapping(value = "/{fileId}/{type}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
-	public byte[] getImageByType(@PathVariable String fileId) throws IOException {
+	public byte[] getImageByType(@PathVariable String fileId,@PathVariable String type) throws IOException {
 		File result = fileRepository.findById(fileId).get();
 		return result.getContent();
 	}
-
+	
+	@RequestMapping(value = "/{fileId}/{type}/{size}", method = RequestMethod.GET, produces = MediaType.IMAGE_JPEG_VALUE)
+	public byte[] getImageByTypeAndSize(@PathVariable String fileId,@PathVariable String type,@PathVariable String size) throws IOException {
+		File result = fileRepository.findById(fileId).get();
+		return result.getContent();
+	}
 }

@@ -10,6 +10,7 @@ import com.lvpeng.seller.common.ResultBean;
 import com.lvpeng.seller.dal.model.AppConfig;
 import com.lvpeng.seller.dal.repository.AppConfigRepository;
 import com.lvpeng.seller.dal.repository.ComponentRepository;
+import com.lvpeng.seller.dal.repository.CustomerRepository;
 import com.lvpeng.seller.dal.repository.GoodsInnerCategoryRepository;
 import com.lvpeng.seller.dal.repository.GoodsRepository;
 import com.lvpeng.seller.dal.repository.GoodsStockRepository;
@@ -20,8 +21,6 @@ import com.lvpeng.seller.dal.repository.NoticeRepository;
 import com.lvpeng.seller.dal.repository.PluginRepository;
 import com.lvpeng.seller.dal.repository.ShopChargeLimitRepository;
 import com.lvpeng.seller.dal.repository.ShopRepository;
-import com.lvpeng.seller.dal.repository.ShopStatusInfoRepository;
-import com.lvpeng.seller.dal.repository.UserRepository;
 import com.lvpeng.seller.dal.repository.UserTokenRepository;
 
 @RestController
@@ -32,7 +31,7 @@ public class InitController {
 	private AppConfigRepository appConfigRepository;
 
 	@Autowired
-	private UserRepository userRepository;
+	private CustomerRepository userRepository;
 
 	@Autowired
 	private UserTokenRepository userTokenRepository;
@@ -46,8 +45,6 @@ public class InitController {
 	@Autowired
 	private ShopChargeLimitRepository shopChargeLimitRepository;
 
-	@Autowired
-	private ShopStatusInfoRepository shopStatusInfoRepository;
 
 	@Autowired
 	private MemberCardRepository memberCardRepository;
